@@ -4,16 +4,17 @@ import cmd
 
 
 class HBNBCommand(cmd.Cmd):
-    """Command line interpreter for the AirBnB clone"""
+    """Command line interpreter for AirBnB clone"""
     prompt = '(hbnb) '
 
-    def do_quit(self, arg):
-        """Quit command to exit program"""
+    def do_EOF(self, line):
+        """Quit the command line with Ctr-D
+
+        """
         return True
 
-    def do_EOF(self, arg):
-        """Quit program with EOF (Ctr-D)"""
-        print()
+    def do_quit(self, line):
+        """Quit command to exit the program"""
         return True
 
 
