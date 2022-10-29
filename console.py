@@ -13,6 +13,7 @@ class HBNBCommand(cmd.Cmd):
 
     def do_EOF(self, arg):
         """Quit program with EOF (Ctr-D)"""
+        print()
         return True
 
 
