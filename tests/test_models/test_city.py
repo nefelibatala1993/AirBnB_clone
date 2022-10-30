@@ -1,26 +1,20 @@
-#!/usr/bin/python3
+#!/usr/bin/env python3
 """
-Test suits for amenities
+    This is a module test from City class and your methods.
 """
-
-import os
-import models
 import unittest
-from datetime import datetime
-from models.base_model import BaseModel
+from models.city import City
 
 
 class TestCity(unittest.TestCase):
     """
-    Tests for amenities
+    this class test City class and your behavior
     """
 
-    def test_name(self):
-        """
-        Tests for name inputs
-        """
-        pass
+    def setUp(self):
+        self.city = City()
 
-
-if __name__ == '__main__':
-    unittest.main()
+    def test_creation(self):
+        '''this test validate that creation proccess was correct.
+        '''
+        self.assertEqual(self.city.name, '')

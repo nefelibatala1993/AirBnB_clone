@@ -1,25 +1,20 @@
 #!/usr/bin/python3
 """
-Test suits for amenities
+    This is a module test from BaseModel class and your methods.
 """
-import os
-import models
 import unittest
-from datetime import datetime
-from models.base_model import BaseModel
+from models.review import Review
 
 
 class TestReview(unittest.TestCase):
     """
-    Tests for amenities
+    this class test user class and your behavior
     """
 
-    def test_name(self):
-        """
-        Tests for name inputs
-        """
-        pass
+    def setUp(self):
+        self.review = Review()
 
-
-if __name__ == '__main__':
-    unittest.main()
+    def test_creation(self):
+        '''this test validate that creation proccess was correct.
+        '''
+        self.assertEqual(self.review.text, '')

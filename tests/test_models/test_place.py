@@ -1,26 +1,20 @@
 #!/usr/bin/python3
 """
-Test suits for places
+    This is a module test from Place class and your methods.
 """
-
-import os
-import models
 import unittest
-from datetime import datetime
-from models.base_model import BaseModel
+from models.place import Place
 
 
 class TestPlace(unittest.TestCase):
     """
-    Tests for amenities
+    this class test Place class and your behavior
     """
 
-    def test_name(self):
-        """
-        Tests for name inputs
-        """
-        pass
+    def setUp(self):
+        self.place = Place()
 
-
-if __name__ == '__main__':
-    unittest.main()
+    def test_creation(self):
+        '''this test validate that creation proccess was correct.
+        '''
+        self.assertEqual(self.place.name, '')
