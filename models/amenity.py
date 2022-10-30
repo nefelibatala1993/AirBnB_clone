@@ -1,20 +1,17 @@
-#!/usr/bin/env python3
-"""This module contains a class called 'Amenity'that inherits from 'BaseModel'
+#!/usr/bin/python3
+"""The `amenity` module
+
+It defines one class, `Amenity(),
+which sub-classes the `BaseModel()` class.`
 """
 from models.base_model import BaseModel
 
 
 class Amenity(BaseModel):
-    """
-    Public class attributes:
-        name: string - empty string
-    """
-    name = ''
+    """An amenity provided by a place/house.
 
-    def __init__(self, *args, **kwargs):
-        if len(kwargs) == 0:
-            super().__init__()
+    Attributes:
+        name
+    """
 
-        # if kwargs have values
-        if len(kwargs) > 0:
-            super().__init__(**kwargs)
+    name = ""

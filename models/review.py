@@ -1,24 +1,23 @@
-#!/usr/bin/env python3
-"""This module contains a class called 'Review'that inherits from 'BaseModel'
+#!/usr/bin/python3
+"""The `review` module.
+
+It defines one class, `Review(),
+which sub-classes the `BaseModel()` class.`
 """
 from models.base_model import BaseModel
 
 
 class Review(BaseModel):
-    """
-    Public class attributes:
-        place_id: string - empty string: it will be the Place.id
-        user_id: string - empty string: it will be the User.id
-        text: string - empty string
-    """
-    place_id = ''
-    user_id = ''
-    text = ''
+    """A review of a place/house.
 
-    def __init__(self, *args, **kwargs):
-        if len(kwargs) == 0:
-            super().__init__()
+    It represents a review posted by the users
+    of the application about a place/house.
 
-        # if kwargs have values
-        if len(kwargs) > 0:
-            super().__init__(**kwargs)
+    Attributes:
+        text
+        user_id
+        place_id
+    """
+    text = ""
+    user_id = ""
+    place_id = ""

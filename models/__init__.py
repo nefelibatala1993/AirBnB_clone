@@ -1,12 +1,8 @@
-#!/usr/bin/env python3
+#!/usr/bin/python3
 """
-models module documentation
-
-storage is a singleton to FileStorage
-and reload objects to file.json
+Module: __init__.py
 """
-from models.engine.file_storage import FileStorage
+from models.engine import file_storage
 
-
-storage = FileStorage()
+storage = file_storage.FileStorage()
 storage.reload()
