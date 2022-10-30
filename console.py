@@ -164,7 +164,7 @@ class HBNBCommand(cmd.Cmd):
     def do_all(self, line):
         """Shows all instances, or instances of a certain class
 
-        Args: 
+        Args:
             line(args): enter with command (optional): <class name>
             Example: 'all' OR 'all User'
 
