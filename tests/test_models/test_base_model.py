@@ -1,32 +1,50 @@
 #!/usr/bin/python3
+"""
+Test suits for the base model
+"""
+
+import os
+import re
+import json
+import uuid
 import unittest
-from models.base_model import BaseModel
+from time import sleep
 from datetime import datetime
+from models.base_model import BaseModel
 
 
 class TestBaseModel(unittest.TestCase):
+    """
+    Tests attributes of the base model
+    """
 
     def setUp(self):
-        self.my_model = BaseModel()
-
-    def test_id_is_a_string(self):
-        """`id` class attribute must be stored in a string format"""
-        self.assertIsInstance(self.my_model.id, str)
-
-    def test_created_at_updated_at(self):
-        """`created_at` and `updated_at` class attributes must be of
-            type datetime.
         """
-        self.assertIsInstance(self.my_model.updated_at, datetime)
-        self.assertIsInstance(self.my_model.created_at, datetime)
+        Classes needed for testing
+        """
+        pass
 
-    def test_to_dict_formats_dates_with_iso_format(self):
-        """to_dict should store dates in ISO format"""
+    def test_basic(self):
+        """
+        Tests basic imputs for the BaseModel class
+        """
+        my_model = BaseModel()
+        my_model.name = "ALX"
+        my_model.number = 89
+        self.assertEqual([my_model.name, my_model.number],
+                         ["ALX", 89])
 
-        temp_dict = self.my_model.to_dict()
-        for k, v in self.my_model.__dict__.items():
-            if isinstance(self.my_model.__dict__[k], datetime):
-                self.assertEqual(datetime.fromisoformat(temp_dict[k]), v)
+    def test_datetime(self):
+        """
+        Tests for correct datetime format
+        """
+        pass
+    
+    def test_datetime(self):
+        """
+        Tests for correct datetime format
+        """
+        pass
 
 
 if __name__ == '__main__':
