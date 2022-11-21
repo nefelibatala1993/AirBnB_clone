@@ -35,4 +35,5 @@ class BaseModel:
                 dict_s[k] = v.isoformat()
             else:
                 dict_s[k] = v
+        dict_s['__class__'] = self.__class__.__name__
         return dict_s
