@@ -9,8 +9,8 @@ class BaseModel:
     Attributes:
           id (str): unique ID of a new instance
           created_at (datetime): current datetime when an instance is created
-          updated_at (datetime): current datetime when an instance is created, and
-            it will be updated everytime an object changes
+          updated_at (datetime): current datetime when an instance is created,
+            and it will be updated everytime an object changes
     """
     def __init__(self):
         """Instantiation Method/ Default Constructor"""
@@ -20,8 +20,8 @@ class BaseModel:
 
     def __str__(self):
         """Returns a string representation of an instance"""
-        return "[{}] ({}) {}".format(self.__class__.__name__
-                                     , self.id, self.__dict__)
+        return "[{}] ({}) {}".format(self.__class__.__name__,
+                                     self.id, self.__dict__)
 
     def save(self):
         """Updates the ``updated_at`` datetime object"""
