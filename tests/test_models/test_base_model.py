@@ -40,3 +40,7 @@ class TestBaseModel(unittest.TestCase):
         for k, v in self.test_obj.__dict__.items():
             if isinstance(self.test_obj.__dict__[k], datetime):
                 self.assertEqual(datetime.fromisoformat(dict_s[k]), v)
+
+
+if __name__ == '__main__':
+    unittest.main()
