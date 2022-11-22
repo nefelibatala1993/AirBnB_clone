@@ -1,6 +1,5 @@
 #!/usr/bin/python3
 """Defines ``TestBaseModel`` class
-
 ``TestBaseModel`` has unittests for the BaseModel class
 """
 import unittest
@@ -44,4 +43,3 @@ class TestBaseModel(unittest.TestCase):
 
 if __name__ == '__main__':
     unittest.main()
-
