@@ -12,6 +12,16 @@ class TestBaseModel(unittest.TestCase):
     def setUp(self) -> None:
         """SetUp method for initializing my new Instance Object"""
         self.test_obj = BaseModel()
+        self.test_obj.name = "My Test Model"
+        self.test_obj.number = 89
+
+    def test_initialized_instance(self):
+        """Tests for BaseModel initialization"""
+        self.assertIsInstance(self.test_obj.id, str)
+        self.assertEqual(self.test_obj.name, "My Test Model")
+        self.assertEqual(self.test_obj.number, 89)
+        self.assertEqual(str(type(self.test_obj)),
+                         "<class 'models.base_model.BaseModel'>")
 
     def test_id_is_str(self) -> None:
         """Tests whether the new ID of an object is a string
