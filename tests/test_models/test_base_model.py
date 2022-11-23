@@ -50,6 +50,19 @@ class TestBaseModel(unittest.TestCase):
             if isinstance(self.test_obj.__dict__[k], datetime):
                 self.assertEqual(datetime.fromisoformat(dict_s[k]), v)
 
+    def test_created_at(self) -> None:
+        """Tests the time for which an object is created at"""
+        b1 = BaseModel()
+        b2 = BaseModel()
+        self.assertLess(b1.created_at, b2.created_at)
+
+    def test_updated_at(self) -> None:
+        """Tests the updated_at attribute of an object"""
+        t1 = self.test_obj.updated_at
+        self.test_obj.save()
+        t2 = self.test_obj.updated_at
+        self.assertLess(t1, t2)
+
 
 if __name__ == '__main__':
     unittest.main()
