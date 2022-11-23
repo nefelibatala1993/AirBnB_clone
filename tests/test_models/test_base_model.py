@@ -63,6 +63,18 @@ class TestBaseModel(unittest.TestCase):
         t2 = self.test_obj.updated_at
         self.assertLess(t1, t2)
 
+    def test_from_dict_to_instance(self) -> None:
+        """Tests for an object created from a dictionary of keys that
+        correspond to its attributes"""
+        dict_s = self.test_obj.to_dict()
+        my_model = BaseModel(dict_s)
+        my_model_dict_s = my_model.to_dict()
+        self.assertIsInstance(my_model.id, str)
+        self.assertIsInstance(my_model.created_at, datetime)
+        self.assertIsInstance(my_model.updated_at, datetime)
+        self.assertNotEqual(self.test_obj, my_model)
+        self.assertNotEqual(dict_s, my_model_dict_s)
+
 
 if __name__ == '__main__':
     unittest.main()

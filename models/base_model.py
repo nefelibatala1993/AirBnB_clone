@@ -11,11 +11,19 @@ class BaseModel:
         created_at (datetime): datetime when an object is created
         updated_at (datetime): datetime when an object is updated
     """
-    def __init__(self):
+    def __init__(self, *args, **kwargs):
         """Instantiation Method / Default Constructor"""
-        self.id = str(uuid4())
-        self.created_at = datetime.now()
-        self.updated_at = datetime.now()
+        if not kwargs:
+            self.id = str(uuid4())
+            self.created_at = datetime.now()
+            self.updated_at = datetime.now()
+        else:
+            for k, v in kwargs.items():
+                if k != '__class__':
+                    if k == 'created_at' or k == 'updated_at':
+                        setattr(self, k, datetime.strptime(v, '%Y-%m-%dT%H:%M:%S.%f'))
+                    else:
+                        setattr(self, k, v)
 
     def __str__(self) -> None:
         """Returns the string representation of an object"""
