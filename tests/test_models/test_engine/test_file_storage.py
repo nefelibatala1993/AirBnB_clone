@@ -27,6 +27,10 @@ class TestFileStorage(unittest.TestCase):
         """Test all method from FileStorage"""
         self.assertIsInstance(self.test_file.all(), dict)
 
+    def test_storage(self) -> None:
+        """Tests storage object"""
+        self.assertIsInstance(storage, FileStorage)
+
 
 if __name__ == '__main__':
     unittest.main()
