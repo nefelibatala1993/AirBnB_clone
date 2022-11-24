@@ -56,13 +56,27 @@ class TestFileStorage(unittest.TestCase):
         with self.assertRaises(TypeError):
             storage.save(self.test_model)
 
-    def test_new_to_store_a_new_object(self) -> None:
+    def test_reload_to_retrieve_an_object(self) -> None:
         """Tests the new method of an object"""
         test_base = BaseModel()
         storage.save()
         storage.reload()
         self.assertIn(test_base.__class__.__name__ + "." + test_base.id,
                       storage.all().keys())
+        with self.assertRaises(TypeError):
+            storage.reload(None)
+            storage.reload(self.test_model)
+
+    def test_new(self) -> None:
+        """Tests the new method"""
+        b = BaseModel()
+        storage.new(b)
+        self.assertIn(b.__class__.__name__ + "." + b.id,
+                      storage.all().keys())
+        with self.assertRaises(AttributeError):
+            storage.new(None)
+        with self.assertRaises(TypeError):
+            storage.new()
 
 
 if __name__ == '__main__':
