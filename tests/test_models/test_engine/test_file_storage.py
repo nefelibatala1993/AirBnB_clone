@@ -40,6 +40,22 @@ class TestFileStorage(unittest.TestCase):
         dict_t = self.test_file.all()
         self.assertDictEqual(dict_s, dict_t)
 
+    def test_reload_empty(self) -> None:
+        """Tests an empty reload from non-existent JSON file"""
+        self.test_file.new(self.test_base)
+        self.test_file.save()
+        dict_s = self.test_file.all()
+        os.remove("test.json")
+        self.test_file.reload()
+        dict_t = self.test_file.all()
+        self.assertEqual(dict_s, dict_t)
+
+    def test_all_if_no_object_is_retrieved(self) -> None:
+        """Tests when an empty JSON file is used to retrieve objects from storage"""
+        FileStorage._FileStorage__objects = {}
+        dict_s = self.test_file.all()
+        self.assertEqual(dict_s, {})
+
 
 if __name__ == '__main__':
     unittest.main()
