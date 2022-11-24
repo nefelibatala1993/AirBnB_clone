@@ -18,6 +18,18 @@ class TestFileStorage(unittest.TestCase):
         if os.path.isfile(storage._FileStorage__file_path):
             os.remove(storage._FileStorage__file_path)
 
+    def test_FileStorage_instantiation_no_args(self):
+        self.assertEqual(type(FileStorage()), FileStorage)
+
+    def test_FileStorage_instantiation_with_arg(self):
+        """Tests instantiation of FileStorage object"""
+        with self.assertRaises(TypeError):
+            FileStorage(None)
+
+    def test_storage_initializes(self):
+        """Tests the storage object"""
+        self.assertEqual(type(storage), FileStorage)
+
     def test_file_path_is_str(self) -> None:
         """Tests the id the file path of the JSON is string"""
         self.assertIsInstance(storage._FileStorage__file_path, str)
