@@ -6,11 +6,12 @@ from models.base_model import BaseModel
 
 
 class FileStorage:
-    """Serializes instances to a JSON file and deserializes JSON file to instance
+    """Serializes instances to a JSON file and deserializes
+    JSON file to instance
     Attributes:
         __file_path (str): path to the JSON file
-        __objects (dict): dictionary of objects. Initially empty, but it will store
-            all objects by <class name>.id
+        __objects (dict): dictionary of objects. Initially
+        empty, but it will store all objects by <class name>.id
     """
     __file_path = 'file.json'
     __objects = {}
