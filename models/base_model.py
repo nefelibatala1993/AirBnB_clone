@@ -2,6 +2,7 @@
 """Defines the BaseModel class"""
 from uuid import uuid4
 from datetime import datetime
+import models
 
 
 class BaseModel:
@@ -17,6 +18,7 @@ class BaseModel:
             self.id = str(uuid4())
             self.created_at = datetime.now()
             self.updated_at = datetime.now()
+            models.storage.new(self)
         else:
             for k, v in kwargs.items():
                 if k != '__class__':
@@ -33,6 +35,7 @@ class BaseModel:
     def save(self) -> None:
         """Updates an Object when an object has been changes"""
         self.updated_at = datetime.now()
+        models.storage.save()
 
     def to_dict(self) -> dict:
         """Returns the dictionary representation of an object"""
