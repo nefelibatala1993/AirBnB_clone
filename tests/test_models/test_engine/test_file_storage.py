@@ -47,6 +47,9 @@ class TestFileStorage(unittest.TestCase):
         """
         self.assertDictEqual(storage.all(),
                              storage._FileStorage__objects)
+        self.assertIsInstance(storage.all(), dict)
+        with self.assertRaises(TypeError):
+            storage.all(None)
 
     def test_save_when_an_object_is_created(self) -> None:
         """Tests the save method when an object is created"""
