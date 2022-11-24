@@ -31,6 +31,15 @@ class TestFileStorage(unittest.TestCase):
         """Tests storage object"""
         self.assertIsInstance(storage, FileStorage)
 
+    def test_save(self) -> None:
+        """Tests save method from FileStorage"""
+        self.test_file.new(self.test_base)
+        dict_s = self.test_file.all()
+        self.test_file.save()
+        self.test_file.reload()
+        dict_t = self.test_file.all()
+        self.assertDictEqual(dict_s, dict_t)
+
 
 if __name__ == '__main__':
     unittest.main()
