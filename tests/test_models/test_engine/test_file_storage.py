@@ -11,87 +11,21 @@ class TestFileStorage(unittest.TestCase):
     """Performs unittests for the FileStorage class"""
     def setUp(self) -> None:
         """Setup method for Initializing a new Instance Object"""
-        self.test_model = BaseModel()
+        with open("test.json", "w", encoding="utf-8"):
+            FileStorage._FileStorage__file_path = "test.json"
+            FileStorage._FileStorage__objects = {}
+        self.test_file = FileStorage()
+        self.test_base = BaseModel()
 
     def tearDown(self) -> None:
         """Cleans up the files created"""
-        if os.path.isfile(storage._FileStorage__file_path):
-            os.remove(storage._FileStorage__file_path)
+        FileStorage.__FileStorage__file_path = "file.json"
+        if os.path.isfile("test.json"):
+            os.remove("test.json")
 
-    def test_FileStorage_instantiation_no_args(self):
-        self.assertEqual(type(FileStorage()), FileStorage)
-
-    def test_FileStorage_instantiation_with_arg(self):
-        """Tests instantiation of FileStorage object"""
-        with self.assertRaises(TypeError):
-            FileStorage(None)
-
-    def test_storage_initializes(self):
-        """Tests the storage object"""
-        self.assertEqual(type(storage), FileStorage)
-
-    def test_file_path_is_str(self) -> None:
-        """Tests the id the file path of the JSON is string"""
-        self.assertIsInstance(storage._FileStorage__file_path, str)
-
-    def test_objects_stores_the_created_objects(self) -> None:
-        """Tests objects stores the created objects in the dictionary"""
-        key = self.test_model.__class__.__name__ + "." + self.test_model.id
-        self.assertIn(key, storage._FileStorage__objects.keys())
-
-    def test_all_returns_the_objects_dict(self) -> None:
-        """
-        Tests the all method of the FileStorage class if it
-        returns the objects dictionary that holds the dictionary
-        of all the objects created
-        """
-        self.assertDictEqual(storage.all(),
-                             storage._FileStorage__objects)
-        self.assertIsInstance(storage.all(), dict)
-        with self.assertRaises(TypeError):
-            storage.all(None)
-
-    def test_save_when_an_object_is_created(self) -> None:
-        """Tests the save method when an object is created"""
-        test_base = BaseModel()
-        storage.save()
-        self.assertIn(test_base.__class__.__name__ + "." +
-                      test_base.id, storage.all().keys())
-
-    def test_reload_to_retrieve_objects_from_json_file(self) -> None:
-        """Tests the reload method in the file storage class"""
-        test_base = BaseModel()
-        storage.save()
-        storage.reload()
-        self.assertIn(test_base.__class__.__name__ +
-                      "." + test_base.id, storage.all().keys())
-
-    def test_save(self) -> None:
-        """Tests the save method with args supplied"""
-        with self.assertRaises(TypeError):
-            storage.save(self.test_model)
-
-    def test_reload_to_retrieve_an_object(self) -> None:
-        """Tests the new method of an object"""
-        test_base = BaseModel()
-        storage.save()
-        storage.reload()
-        self.assertIn(test_base.__class__.__name__ + "." + test_base.id,
-                      storage.all().keys())
-        with self.assertRaises(TypeError):
-            storage.reload(None)
-            storage.reload(self.test_model)
-
-    def test_new(self) -> None:
-        """Tests the new method"""
-        b = BaseModel()
-        storage.new(b)
-        self.assertIn(b.__class__.__name__ + "." + b.id,
-                      storage.all().keys())
-        with self.assertRaises(AttributeError):
-            storage.new(None)
-        with self.assertRaises(TypeError):
-            storage.new()
+    def test_all(self) -> None:
+        """Test all method from FileStorage"""
+        self.assertIsInstance(self.test_file.all(), dict)
 
 
 if __name__ == '__main__':
