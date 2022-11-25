@@ -17,12 +17,26 @@ class TestFileStorage(unittest.TestCase):
         """SetUp initialization for test cases"""
         self.test_obj = BaseModel()
 
+    def tearDown(self) -> None:
+        """Cleans up after all tests"""
+        if os.path.isfile(FileStorage._FileStorage__file_path):
+            os.remove(FileStorage._FileStorage__file_path)
+
     def test_all(self) -> None:
         """Tests the all method of an object
         """
         self.assertIsInstance(storage.all(), dict)
         with self.assertRaises(TypeError):
             storage.all(None)
+
+    def test_new(self) -> None:
+        """Tests the new method of when an object is created"""
+        test_base = BaseModel()
+        key = type(test_base).__name__ + "." + test_base.id
+        FileStorage._FileStorage__objects = {}
+        storage.new(test_base)
+        dict_s = storage.all()
+        self.assertIn(key, dict_s.keys())
 
 
 if __name__ == '__main__':
