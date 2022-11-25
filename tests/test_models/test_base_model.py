@@ -83,16 +83,6 @@ class TestBaseModel(unittest.TestCase):
         key = self.test_obj.__class__.__name__ + "." + self.test_obj.id
         self.assertIn(key, dict_s.keys())
 
-    def test_save_when_an_object_is_updated(self) -> None:
-        """Tests save method when an object is updated"""
-        key = self.test_obj.__class__.__name__ + "." + self.test_obj.id
-        dict_s = storage.all()
-        t1 = dict_s[key].updated_at
-        self.test_obj.save()
-        dict_t = storage.all()
-        t2 = dict_t[key].updated_at
-        self.assertLess(t1, t2)
-
 
 if __name__ == '__main__':
     unittest.main()
