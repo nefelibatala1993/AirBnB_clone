@@ -39,6 +39,9 @@ class TestFileStorage(unittest.TestCase):
         storage.new(self.test_obj)
         dict_s = storage.all()
         self.assertIn(key, dict_s.keys())
+        with self.assertRaises(AttributeError):
+            storage.new(98)
+            storage.new(None)
 
     def test_save(self) -> None:
         """Tests the save method when the object are stored in JSON file"""
