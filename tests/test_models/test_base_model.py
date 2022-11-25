@@ -3,7 +3,8 @@
 ``TestBaseModel`` has unittests for the BaseModel class
 """
 import unittest
-from models import storage
+import json
+from os import path
 from models.base_model import BaseModel
 from models.engine.file_storage import FileStorage
 from datetime import datetime
@@ -76,12 +77,6 @@ class TestBaseModel(unittest.TestCase):
         self.assertIsInstance(my_model.updated_at, datetime)
         self.assertNotEqual(self.test_obj, my_model)
         self.assertNotEqual(dict_s, my_model_dict_s)
-
-    def test_new_when_new_object_created(self) -> None:
-        """Tests new method when new object is created"""
-        dict_s = FileStorage._FileStorage__objects
-        key = self.test_obj.__class__.__name__ + "." + self.test_obj.id
-        self.assertIn(key, dict_s.keys())
 
 
 if __name__ == '__main__':
