@@ -47,7 +47,7 @@ class TestFileStorage(unittest.TestCase):
         """Tests the save method when the object are stored in JSON file"""
         key = type(self.test_obj).__name__ + "." + self.test_obj.id
         storage.save()
-        with open(FileStorage._FileStorage__file_path, "r", encoding="utf-8") as f:
+        with open(FileStorage._FileStorage__file_path, "r") as f:
             dict_t = json.load(f)
         self.assertIn(key, dict_t.keys())
 
@@ -59,6 +59,16 @@ class TestFileStorage(unittest.TestCase):
         storage.reload()
         dict_s = storage.all()
         self.assertIn(key, dict_s.keys())
+
+    def test_reload_if_no_file_present(self) -> None:
+        """Tests reload when no file is present"""
+        empty_dict = {}
+        storage.save()
+        FileStorage._FileStorage__objects = {}
+        os.remove(FileStorage._FileStorage__file_path)
+        storage.reload()
+        dict_s = storage.all()
+        self.assertEqual(dict_s, empty_dict)
 
 
 if __name__ == '__main__':
