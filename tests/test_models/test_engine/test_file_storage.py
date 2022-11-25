@@ -46,6 +46,15 @@ class TestFileStorage(unittest.TestCase):
             dict_t = json.load(f)
         self.assertIn(key, dict_t.keys())
 
+    def test_reload(self) -> None:
+        """Tests the reload method to retrieve object from storage"""
+        key = type(self.test_obj).__name__ + "." + self.test_obj.id
+        storage.save()
+        FileStorage._FileStorage__objects = {}
+        storage.reload()
+        dict_s = storage.all()
+        self.assertIn(key, dict_s.keys())
+
 
 if __name__ == '__main__':
     unittest.main()
