@@ -26,7 +26,9 @@ class TestFileStorage(unittest.TestCase):
     def test_all(self) -> None:
         """Tests the all method of an object
         """
+        dict_s = FileStorage._FileStorage__objects
         self.assertIsInstance(storage.all(), dict)
+        self.assertDictEqual(dict_s, storage.all())
         with self.assertRaises(TypeError):
             storage.all(None)
 
