@@ -23,11 +23,11 @@ class TestBaseModel(unittest.TestCase):
     def test_created_at(self) -> None:
         """Tests the created_at public instance attribute"""
         self.assertIsInstance(self.testBase.created_at, datetime)
-    
+
     def test_updated_at(self) -> None:
         """Tests updated_at public instance attribute"""
         self.assertIsInstance(self.testBase.updated_at, datetime)
-    
+
     def test_save(self) -> None:
         """Tests the save method of the BaseModel class"""
         t1 = self.testBase.updated_at
@@ -40,7 +40,7 @@ class TestBaseModel(unittest.TestCase):
         str_rep = f"{self.testBase.__class__.__name__} "\
             f"({self.testBase.id}) {self.testBase.__dict__}"
         self.assertEqual(str(self.testBase), str_rep)
-    
+
     def test_to_dict(self) -> None:
         """Tests the to_dict() method of the BaseModel class"""
         dict_s = self.testBase.__dict__
