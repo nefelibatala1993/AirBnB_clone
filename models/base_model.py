@@ -10,7 +10,7 @@ class BaseModel:
         """Instantiaion Method / Default Constructor"""
         if kwargs:
             for key, value in kwargs.items():
-                if key != '__class___':
+                if key != '__class__':
                     if key != 'created_at' or key != 'updated_at':
                         setattr(self, key, value)
                     else:
