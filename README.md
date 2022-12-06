@@ -1,3 +1,3 @@
 # AirBnB clone - The Console
 
-[AirBnB Clone](https://i.imgur.com/Gbh7TCl.png)
+[AirBnB Clone](https://imgur.com/Gbh7TCl)
