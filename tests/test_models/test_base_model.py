@@ -37,7 +37,7 @@ class TestBaseModel(unittest.TestCase):
 
     def test_str(self) -> None:
         """Tests the string representaion of an object"""
-        str_rep = f"{self.testBase.__class__.__name__} "\
+        str_rep = f"[{self.testBase.__class__.__name__}] "\
             f"({self.testBase.id}) {self.testBase.__dict__}"
         self.assertEqual(str(self.testBase), str_rep)
 
@@ -50,3 +50,7 @@ class TestBaseModel(unittest.TestCase):
                 self.assertEqual(dict_s[key].isoformat(), value)
             else:
                 self.assertEqual(dict_s[key], value)
+
+
+if __name__ == '__main__':
+    unittest.main()
