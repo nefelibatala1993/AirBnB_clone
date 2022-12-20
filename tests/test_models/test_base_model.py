@@ -18,3 +18,7 @@ class TestBaseModel(unittest.TestCase):
     def test_str(self) -> None:
         """Tests the string representation of an object"""
         test_str = f"[{self.testBase.__class__.__name__}] ({self.id}) {self.__dict__}"
+
+    def test_to_dict(self) -> None:
+        """Tests to_dict() method of BaseModel has all the attributes required"""
+        self.assertIn('__class__', self.testBase.to_dict().keys())
