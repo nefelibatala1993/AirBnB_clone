@@ -3,7 +3,7 @@
 
 AirBnB Clone is simple copy of the AirBnB website. The goal of this project is to build a simple copy of the AriBnB website on my own server.
 
-Here, the goal is to build a **command-line interface** to maniplate data without a visual interface, like in a *Shell* (perfect for development and debugging). This will be the first part of constructing the full web application. Further, I will have a front-end that shows the final product to everybody: static and dynamic, a database or files that store data (data = objects), and an API that provides a communication interface between the front-end and your data (retrieve, create, delete, update them)
+Currently, the goal is to build a **command-line interface** to maniplate data without a visual interface, like in a *Shell* (perfect for development and debugging). This will be the first part of constructing the full web application. Further, I will have a front-end that shows the final product to everybody: static and dynamic, a database or files that store data (data = objects), and an API that provides a communication interface between the front-end and your data (retrieve, create, delete, update them)
 
 ## The Console
 A *command-line interface* to manipulate data without having a visual interface, like in a *Shell* (perfect for development and debugging).
