@@ -23,3 +23,10 @@ class TestBaseModel(unittest.TestCase):
     def test_to_dict(self) -> None:
         """Tests to_dict() method of BaseModel has all the attributes required"""
         self.assertIn('__class__', self.testBase.to_dict().keys())
+
+    def test_from_dict_to_obj(self) -> None:
+        """Tests for when an object is created from a dictionary"""
+        dict_s = self.testBase.to_dict()
+        new = BaseModel(**dict_s)
+        dict_n = new.to_dict()
+        self.assertDictEqual(dict_s, dict_n)
