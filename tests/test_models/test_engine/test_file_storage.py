@@ -38,6 +38,24 @@ class TestFileStorage(unittest.TestCase):
                 json_dict = json.load(f)
         self.assertIn(key, json_dict)
 
+    def test_new(self) -> None:
+        """Tests the new method of the FileStorage class"""
+        testBase = BaseModel()
+        key = testBase.__class__.__name__ + "." + testBase.id
+
+        # TODO: Clean the __objects attribute because it will store the
+        #       object once the object is created (the new method is called
+        #       by a new instance when it is created), and check whether the
+        #       __object is empty
+        FileStorage._FileStorage__objects = {}
+        self.assertDictEqual(FileStorage._FileStorage__objects, {})
+
+        # TODO: Store the object by calling the new method on the storage
+        #       object, to check whether the object is stored in the dict
+        #       __objects
+        storage.new(testBase)
+        self.assertIn(key, FileStorage._FileStorage__objects)
+
 
 if __name__ == '__main__':
     unittest.main()
