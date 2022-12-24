@@ -7,7 +7,7 @@ from models.base_model import BaseModel
 class FileStorage:
     """`FileStorage` serializes instances to a JSON file and
     deserializes JSON file to instances. This is one of the
-    storage engines that will power the AirBnB website"""
+    storage engines that will power the AirBnB clone website"""
     __file_path = "file.json"
     __objects = {}
 
