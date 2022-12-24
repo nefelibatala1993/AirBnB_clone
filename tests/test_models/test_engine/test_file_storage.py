@@ -19,6 +19,16 @@ class TestFileStorage(unittest.TestCase):
         if os.path.isfile(FileStorage._FileStorage__file_path):
             os.remove(FileStorage._FileStorage__file_path)
 
+    def test_instantiation(self) -> None:
+        """Tests for an instantiation of a FileStorage object"""
+        testFileStorage = FileStorage()
+        self.assertIsInstance(testFileStorage, FileStorage)
+        self.assertTrue(hasattr(testFileStorage, "all"))
+        self.assertTrue(hasattr(testFileStorage, "save"))
+        self.assertTrue(hasattr(testFileStorage, "reload"))
+        self.assertTrue(hasattr(testFileStorage, "new"))
+
+
     def test_all(self) -> None:
         """Tests the all method of the FileStorage class"""
         testBase = BaseModel()
