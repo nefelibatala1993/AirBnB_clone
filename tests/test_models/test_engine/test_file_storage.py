@@ -76,6 +76,14 @@ class TestFileStorage(unittest.TestCase):
         self.assertNotEqual(storage.all(), {})
         self.assertIn(key, storage.all())
 
+    def test_key_format(self):
+        """ Key is properly formatted """
+        new = BaseModel()
+        _id = new.to_dict()['id']
+        for key in storage.all().keys():
+            temp = key
+        self.assertEqual(temp, 'BaseModel' + '.' + _id)
+
 
 if __name__ == '__main__':
     unittest.main()
