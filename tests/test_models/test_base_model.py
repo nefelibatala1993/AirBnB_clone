@@ -17,11 +17,11 @@ class TestBaseModel(unittest.TestCase):
         self.testBase.save()
         self.assertLess(t, self.testBase.updated_at)
 
-        # Check whether the object is stored in storage
+        # Check whether the object is stored in storage (__objects)
         key = self.testBase.__class__.__name__ + "." + self.testBase.id
         self.assertIn(key, storage.all())
 
-        # Check if the object has the same content
+        # Check if the object stored has the same content
         with open(storage._FileStorage__file_path, 'r') as f:
             j = json.load(f)
             self.assertEqual(j[key], self.testBase.to_dict())
@@ -41,3 +41,7 @@ class TestBaseModel(unittest.TestCase):
         new = BaseModel(**dict_s)
         dict_n = new.to_dict()
         self.assertDictEqual(dict_s, dict_n)
+
+
+if __name__ == '__main__':
+    unittest.main()
