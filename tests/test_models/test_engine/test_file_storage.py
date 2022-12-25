@@ -76,22 +76,6 @@ class TestFileStorage(unittest.TestCase):
         self.assertNotEqual(storage.all(), {})
         self.assertIn(key, storage.all())
 
-    def test_reload_empty(self):
-        """ Load from an empty file """
-        with open('file.json', 'w') as f:
-            pass
-        with self.assertRaises(ValueError):
-            storage.reload()
-
-    def test_type_path(self) -> None:
-        """Tests the type of object the __file_path is"""
-        self.assertIsInstance(FileStorage._FileStorage__file_path, str)
-
-    def test_type_objects(self) -> None:
-        """Tests the type of object the __objects is"""
-        self.assertIsInstance(FileStorage._FileStorage__objects, dict)
-
-
 
 if __name__ == '__main__':
     unittest.main()

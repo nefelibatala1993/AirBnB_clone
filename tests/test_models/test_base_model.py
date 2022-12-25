@@ -1,6 +1,7 @@
 #!/usr/bin/python3
 """Unitest for the BaseModel class"""
 import unittest
+from models import storage
 from models.base_model import BaseModel
 
 
@@ -14,6 +15,10 @@ class TestBaseModel(unittest.TestCase):
         t = self.testBase.updated_at
         self.testBase.save()
         self.assertLess(t, self.testBase.updated_at)
+
+        # Check whether the object is stored in storage
+        key = self.testBase.__class__.__name__ + "." + self.testBase.id
+        self.assertIn(key, storage.all())
 
     def test_str(self) -> None:
         """Tests the string representation of an object"""
