@@ -76,13 +76,14 @@ class TestFileStorage(unittest.TestCase):
         self.assertNotEqual(storage.all(), {})
         self.assertIn(key, storage.all())
 
-    def test_key_format(self):
-        """ Key is properly formatted """
-        new = BaseModel()
-        _id = new.to_dict()['id']
-        for key in storage.all().keys():
-            temp = key
-        self.assertEqual(temp, 'BaseModel' + '.' + _id)
+    def test_type_path(self) -> None:
+        """Tests the type of object the __file_path is"""
+        self.assertIsInstance(FileStorage._FileStorage__file_path, str)
+
+    def test_type_objects(self) -> None:
+        """Tests the type of object the __objects is"""
+        self.assertIsInstance(FileStorage._FileStorage__objects, dict)
+
 
 
 if __name__ == '__main__':
