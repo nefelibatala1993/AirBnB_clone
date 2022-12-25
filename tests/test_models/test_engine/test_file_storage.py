@@ -10,9 +10,10 @@ from models.engine.file_storage import FileStorage
 
 class TestFileStorage(unittest.TestCase):
     """Unittest for the FileStorage class"""
+
     def setUp(self) -> None:
-        """Sets up for all the tests"""
-        FileStorage._FileStorage__objects = {}
+        """Sets up for the tests"""
+        self.maxDiff = None
 
     def tearDown(self) -> None:
         """Cleans up after all tests have been carried out"""
@@ -53,18 +54,27 @@ class TestFileStorage(unittest.TestCase):
         testBase = BaseModel()
         key = testBase.__class__.__name__ + "." + testBase.id
 
-        # TODO: Clean the __objects attribute because it will store the
-        #       object once the object is created (the new method is called
-        #       by a new instance when it is created), and check whether the
-        #       __object is empty
-        FileStorage._FileStorage__objects = {}
-        self.assertDictEqual(FileStorage._FileStorage__objects, {})
-
         # TODO: Store the object by calling the new method on the storage
         #       object, to check whether the object is stored in the dict
         #       __objects
-        storage.new(testBase)
         self.assertIn(key, FileStorage._FileStorage__objects)
+
+    def test_reload(self) -> None:
+        """Tests the reload method of the FileStorage class"""
+        testBase = BaseModel()
+        key = testBase.__class__.__name__ + "." + testBase.id
+        self.assertIn(key, FileStorage._FileStorage__objects)
+
+        # Store the objects to the __file_path and delete __objects
+        storage.save()
+        self.assertTrue(os.path.isfile(FileStorage._FileStorage__file_path))
+        FileStorage._FileStorage__objects = {}
+        self.assertDictEqual(storage.all(), {})
+
+        # Reload from file
+        storage.reload()
+        self.assertNotEqual(storage.all(), {})
+        self.assertIn(key, storage.all())
 
 
 if __name__ == '__main__':
