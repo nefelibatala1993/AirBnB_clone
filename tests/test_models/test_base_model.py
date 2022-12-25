@@ -1,6 +1,7 @@
 #!/usr/bin/python3
 """Unitest for the BaseModel class"""
 import unittest
+import json
 from models import storage
 from models.base_model import BaseModel
 
@@ -19,6 +20,11 @@ class TestBaseModel(unittest.TestCase):
         # Check whether the object is stored in storage
         key = self.testBase.__class__.__name__ + "." + self.testBase.id
         self.assertIn(key, storage.all())
+
+        # Check if the object has the same content
+        with open(storage._FileStorage__file_path, 'r') as f:
+            j = json.load(f)
+            self.assertEqual(j[key], self.testBase.to_dict())
 
     def test_str(self) -> None:
         """Tests the string representation of an object"""
