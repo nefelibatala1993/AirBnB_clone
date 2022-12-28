@@ -71,7 +71,7 @@ class HBNBCommand(cmd.Cmd):
                 if key not in storage.all().keys():
                     print("** no instance found**")
                 else:
-                    del storage.all()[key]
+                    del(storage.all()[key])
                     storage.save()
 
     def do_all(self, line) -> None:
@@ -80,21 +80,22 @@ class HBNBCommand(cmd.Cmd):
 
             Syntax: all <class name> or all
         """
-        if not line:
-            obj_list_all = [
-                str(val) for val in storage.all().values()
-            ]
-            print(obj_list_all)
-        else:
-            if line not in HBNBCommand.classes.keys():
-                print("** class doesn't exist **")
-            else:
-                obj_list = []
-                for val in storage.all().values():
-                    if val.to_dict()['__class__'] == line:
-                        obj_list.append(str(val))
-                print(obj_list)
+        obj_list = []
 
+        if line:
+            line = line.split(' ')[0] # Remove any possible trailing args
+            if line not in HBNBCommand.classes:
+                print("** class doesn't exist **")
+                return
+            for key, val in storage.all().items():
+                if key.split('.')[0] == line:
+                    obj_list.append(str(val))
+        else:
+            for key, val in storage.all().items():
+                obj_list.append(str(val))
+
+        print(obj_list)
+        
     def do_update(self, line) -> None:
         """Updates an instance based on the class name and id by adding
         or updating attribute.\n
