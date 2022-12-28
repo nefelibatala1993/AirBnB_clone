@@ -26,7 +26,7 @@ class HBNBCommand(cmd.Cmd):
         """
         if not line:
             print("** class name missing **")
-        elif (line in self.classes.keys()):
+        elif (line in HBNBCommand.classes.keys()):
             new_obj = eval(line)()
             storage.save()
             print(f"{new_obj.id}")
@@ -43,7 +43,7 @@ class HBNBCommand(cmd.Cmd):
             print("** class name missing **")
         else:
             args = line.split()
-            if args[0] not in self.classes.keys():
+            if args[0] not in HBNBCommand.classes.keys():
                 print("** class doesn't exist **")
             elif len(args) < 2:
                 print("** instance id missing **")
@@ -65,7 +65,7 @@ class HBNBCommand(cmd.Cmd):
             print("** class name missing **")
         else:
             args = line.split()
-            if args[0] not in self.classes.keys():
+            if args[0] not in HBNBCommand.classes.keys():
                 print("** class doesn't exist **")
             elif len(args) < 2:
                 print("** instance id missing **")
@@ -89,7 +89,7 @@ class HBNBCommand(cmd.Cmd):
             ]
             print(obj_list_all)
         else:
-            if line not in self.classes.keys():
+            if line not in HBNBCommand.classes.keys():
                 print("** class doesn't exist **")
             else:
                 obj_list = []
@@ -110,7 +110,7 @@ class HBNBCommand(cmd.Cmd):
             print("** class name missing **")
         else:
             args = line.split()
-            if args[0] not in self.classes.keys():
+            if args[0] not in HBNBCommand.classes.keys():
                 print("** class doesn't exist **")
             elif len(args) < 2:
                 print("** instance id missing **")
