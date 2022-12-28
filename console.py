@@ -12,10 +12,7 @@ class HBNBCommand(cmd.Cmd):
         'BaseModel': BaseModel
     }
 
-    def __init__(self) -> None:
-        """Instantiation Method / Default Constructor"""
-        cmd.Cmd.__init__(self)
-        self.prompt = '(hbnb) '
+    prompt = '(hbnb) '
 
     def do_create(self, line) -> None:
         """\n\tCreates a new instance based on the specified class name.\n
