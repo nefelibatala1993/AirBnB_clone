@@ -23,10 +23,10 @@ class HBNBCommand(cmd.Cmd):
         """
         if not line:
             print("** class name missing **")
-        elif (line in HBNBCommand.classes.keys()):
-            new_obj = eval(line)()
+        elif line in HBNBCommand.classes.keys():
+            new_obj = HBNBCommand.classes[line]()
             storage.save()
-            print(f"{new_obj.id}")
+            print(new_obj.id)
         else:
             print("** class doesn't exist **")
 
@@ -39,13 +39,17 @@ class HBNBCommand(cmd.Cmd):
         if not line:
             print("** class name missing **")
         else:
-            args = line.split()
-            if args[0] not in HBNBCommand.classes.keys():
+            obj_info = line.partition(" ")
+            obj_cls_name = obj_info[0]
+            obj_id = obj_info[2]
+
+            if obj_cls_name not in HBNBCommand.classes.keys():
                 print("** class doesn't exist **")
-            elif len(args) < 2:
+            elif not obj_id:
                 print("** instance id missing **")
             else:
-                key = args[0] + "." + args[1]
+                obj_id = obj_id.partition(" ")[0] # Remove trailing args
+                key = obj_cls_name + "." + obj_id
                 if key not in storage.all().keys():
                     print("** no instance found **")
                 else:
@@ -95,7 +99,7 @@ class HBNBCommand(cmd.Cmd):
                 obj_list.append(str(val))
 
         print(obj_list)
-        
+
     def do_update(self, line) -> None:
         """Updates an instance based on the class name and id by adding
         or updating attribute.\n
